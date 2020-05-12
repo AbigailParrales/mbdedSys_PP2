@@ -1,0 +1,156 @@
+\hypertarget{i2c-lcd_8c}{}\section{Core/\+Src/i2c-\/lcd.c File Reference}
+\label{i2c-lcd_8c}\index{Core/\+Src/i2c-\/lcd.\+c@{Core/\+Src/i2c-\/lcd.\+c}}
+{\ttfamily \#include \char`\"{}i2c-\/lcd.\+h\char`\"{}}\newline
+Include dependency graph for i2c-\/lcd.c\+:
+% FIG 0
+\subsection*{Macros}
+\begin{DoxyCompactItemize}
+\item 
+\#define \hyperlink{i2c-lcd_8c_a16b338f4ba8614530cf7e484066f29c5}{S\+L\+A\+V\+E\+\_\+\+A\+D\+D\+R\+E\+S\+S\+\_\+\+L\+CD}~0x4E
+\end{DoxyCompactItemize}
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{i2c-lcd_8c_a0934da706080d3b0b3b2f04c9d044e67}{lcd\+\_\+send\+\_\+cmd} (char cmd)
+\item 
+void \hyperlink{i2c-lcd_8c_ac6c9650fc3a35bf393a6bf535e6d0b9f}{lcd\+\_\+send\+\_\+data} (char \hyperlink{main_8c_a7f897df1949af68456ee830f2468e476}{data})
+\item 
+void \hyperlink{i2c-lcd_8c_ad235a86241458b1e7b8771688bfdaf9a}{lcd\+\_\+clear} (void)
+\item 
+void \hyperlink{i2c-lcd_8c_a6842775ba83d166f02b8fef8bb63b1e6}{lcd\+\_\+init} (void)
+\item 
+void \hyperlink{i2c-lcd_8c_a234ae1cb5d91fa756d1216e3540222ad}{lcd\+\_\+send\+\_\+string} (char $\ast$str)
+\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+I2\+C\+\_\+\+Handle\+Type\+Def \hyperlink{i2c-lcd_8c_af7b2c26e44dadaaa798a5c3d82914ba7}{hi2c1}
+\end{DoxyCompactItemize}
+
+
+\subsection{Macro Definition Documentation}
+\mbox{\Hypertarget{i2c-lcd_8c_a16b338f4ba8614530cf7e484066f29c5}\label{i2c-lcd_8c_a16b338f4ba8614530cf7e484066f29c5}} 
+\index{i2c-\/lcd.\+c@{i2c-\/lcd.\+c}!S\+L\+A\+V\+E\+\_\+\+A\+D\+D\+R\+E\+S\+S\+\_\+\+L\+CD@{S\+L\+A\+V\+E\+\_\+\+A\+D\+D\+R\+E\+S\+S\+\_\+\+L\+CD}}
+\index{S\+L\+A\+V\+E\+\_\+\+A\+D\+D\+R\+E\+S\+S\+\_\+\+L\+CD@{S\+L\+A\+V\+E\+\_\+\+A\+D\+D\+R\+E\+S\+S\+\_\+\+L\+CD}!i2c-\/lcd.\+c@{i2c-\/lcd.\+c}}
+\subsubsection{\texorpdfstring{S\+L\+A\+V\+E\+\_\+\+A\+D\+D\+R\+E\+S\+S\+\_\+\+L\+CD}{SLAVE\_ADDRESS\_LCD}}
+{\footnotesize\ttfamily \#define S\+L\+A\+V\+E\+\_\+\+A\+D\+D\+R\+E\+S\+S\+\_\+\+L\+CD~0x4E}
+
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{i2c-lcd_8c_ad235a86241458b1e7b8771688bfdaf9a}\label{i2c-lcd_8c_ad235a86241458b1e7b8771688bfdaf9a}} 
+\index{i2c-\/lcd.\+c@{i2c-\/lcd.\+c}!lcd\+\_\+clear@{lcd\+\_\+clear}}
+\index{lcd\+\_\+clear@{lcd\+\_\+clear}!i2c-\/lcd.\+c@{i2c-\/lcd.\+c}}
+\subsubsection{\texorpdfstring{lcd\+\_\+clear()}{lcd\_clear()}}
+{\footnotesize\ttfamily void lcd\+\_\+clear (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Clear L\+CD 
+\begin{DoxyCode}
+70 \{
+71     \hyperlink{i2c-lcd_8c_a0934da706080d3b0b3b2f04c9d044e67}{lcd\_send\_cmd} (0x80);
+72     \textcolor{keywordflow}{for} (\textcolor{keywordtype}{int} i=0; i<70; i++)
+73     \{
+74         \hyperlink{i2c-lcd_8c_ac6c9650fc3a35bf393a6bf535e6d0b9f}{lcd\_send\_data} (\textcolor{charliteral}{' '});
+75     \}
+76 \}
+\end{DoxyCode}
+\mbox{\Hypertarget{i2c-lcd_8c_a6842775ba83d166f02b8fef8bb63b1e6}\label{i2c-lcd_8c_a6842775ba83d166f02b8fef8bb63b1e6}} 
+\index{i2c-\/lcd.\+c@{i2c-\/lcd.\+c}!lcd\+\_\+init@{lcd\+\_\+init}}
+\index{lcd\+\_\+init@{lcd\+\_\+init}!i2c-\/lcd.\+c@{i2c-\/lcd.\+c}}
+\subsubsection{\texorpdfstring{lcd\+\_\+init()}{lcd\_init()}}
+{\footnotesize\ttfamily void lcd\+\_\+init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+Initialize L\+CD 
+\begin{DoxyCode}
+82 \{
+83     \hyperlink{i2c-lcd_8c_a0934da706080d3b0b3b2f04c9d044e67}{lcd\_send\_cmd} (0x02);
+84     \hyperlink{i2c-lcd_8c_a0934da706080d3b0b3b2f04c9d044e67}{lcd\_send\_cmd} (0x28);
+85     \hyperlink{i2c-lcd_8c_a0934da706080d3b0b3b2f04c9d044e67}{lcd\_send\_cmd} (0x0c);
+86     \hyperlink{i2c-lcd_8c_a0934da706080d3b0b3b2f04c9d044e67}{lcd\_send\_cmd} (0x80);
+87 \}
+\end{DoxyCode}
+\mbox{\Hypertarget{i2c-lcd_8c_a0934da706080d3b0b3b2f04c9d044e67}\label{i2c-lcd_8c_a0934da706080d3b0b3b2f04c9d044e67}} 
+\index{i2c-\/lcd.\+c@{i2c-\/lcd.\+c}!lcd\+\_\+send\+\_\+cmd@{lcd\+\_\+send\+\_\+cmd}}
+\index{lcd\+\_\+send\+\_\+cmd@{lcd\+\_\+send\+\_\+cmd}!i2c-\/lcd.\+c@{i2c-\/lcd.\+c}}
+\subsubsection{\texorpdfstring{lcd\+\_\+send\+\_\+cmd()}{lcd\_send\_cmd()}}
+{\footnotesize\ttfamily void lcd\+\_\+send\+\_\+cmd (\begin{DoxyParamCaption}\item[{char}]{cmd }\end{DoxyParamCaption})}
+
+Send L\+CD comand 
+\begin{DoxyParams}{Parameters}
+{\em cmd} & \\
+\hline
+\end{DoxyParams}
+$<$ en=1, rs=0
+
+$<$ en=0, rs=0
+
+$<$ en=1, rs=0
+
+$<$ en=0, rs=0 
+\begin{DoxyCode}
+37 \{
+38   \textcolor{keywordtype}{char} data\_u, data\_l;
+39     uint8\_t data\_t[4];
+40     data\_u = (cmd&0xf0);
+41     data\_l = ((cmd<<4)&0xf0);
+42     data\_t[0] = data\_u|0x0C;  
+43     data\_t[1] = data\_u|0x08;  
+44     data\_t[2] = data\_l|0x0C;  
+45     data\_t[3] = data\_l|0x08;  
+46     HAL\_I2C\_Master\_Transmit (&\hyperlink{i2c-lcd_8c_af7b2c26e44dadaaa798a5c3d82914ba7}{hi2c1}, \hyperlink{i2c-lcd_8c_a16b338f4ba8614530cf7e484066f29c5}{SLAVE\_ADDRESS\_LCD},(uint8\_t *) data\_t, 4, 100);
+47 \}
+\end{DoxyCode}
+\mbox{\Hypertarget{i2c-lcd_8c_ac6c9650fc3a35bf393a6bf535e6d0b9f}\label{i2c-lcd_8c_ac6c9650fc3a35bf393a6bf535e6d0b9f}} 
+\index{i2c-\/lcd.\+c@{i2c-\/lcd.\+c}!lcd\+\_\+send\+\_\+data@{lcd\+\_\+send\+\_\+data}}
+\index{lcd\+\_\+send\+\_\+data@{lcd\+\_\+send\+\_\+data}!i2c-\/lcd.\+c@{i2c-\/lcd.\+c}}
+\subsubsection{\texorpdfstring{lcd\+\_\+send\+\_\+data()}{lcd\_send\_data()}}
+{\footnotesize\ttfamily void lcd\+\_\+send\+\_\+data (\begin{DoxyParamCaption}\item[{char}]{data }\end{DoxyParamCaption})}
+
+Send data to display in the L\+CD 
+\begin{DoxyParams}{Parameters}
+{\em data} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}
+54 \{
+55     \textcolor{keywordtype}{char} data\_u, data\_l;
+56     uint8\_t data\_t[4];
+57     data\_u = (\hyperlink{main_8c_a7f897df1949af68456ee830f2468e476}{data}&0xf0);
+58     data\_l = ((\hyperlink{main_8c_a7f897df1949af68456ee830f2468e476}{data}<<4)&0xf0);
+59     data\_t[0] = data\_u|0x0D;  \textcolor{comment}{/* !< en=1, rs=0 */}
+60     data\_t[1] = data\_u|0x09;  \textcolor{comment}{/* !< en=0, rs=0 */}
+61     data\_t[2] = data\_l|0x0D;  \textcolor{comment}{/* !< en=1, rs=0 */}
+62     data\_t[3] = data\_l|0x09;  \textcolor{comment}{/* !< en=0, rs=0 */}
+63     HAL\_I2C\_Master\_Transmit (&\hyperlink{i2c-lcd_8c_af7b2c26e44dadaaa798a5c3d82914ba7}{hi2c1}, \hyperlink{i2c-lcd_8c_a16b338f4ba8614530cf7e484066f29c5}{SLAVE\_ADDRESS\_LCD},(uint8\_t *) data\_t, 4, 100);
+64 \}
+\end{DoxyCode}
+\mbox{\Hypertarget{i2c-lcd_8c_a234ae1cb5d91fa756d1216e3540222ad}\label{i2c-lcd_8c_a234ae1cb5d91fa756d1216e3540222ad}} 
+\index{i2c-\/lcd.\+c@{i2c-\/lcd.\+c}!lcd\+\_\+send\+\_\+string@{lcd\+\_\+send\+\_\+string}}
+\index{lcd\+\_\+send\+\_\+string@{lcd\+\_\+send\+\_\+string}!i2c-\/lcd.\+c@{i2c-\/lcd.\+c}}
+\subsubsection{\texorpdfstring{lcd\+\_\+send\+\_\+string()}{lcd\_send\_string()}}
+{\footnotesize\ttfamily void lcd\+\_\+send\+\_\+string (\begin{DoxyParamCaption}\item[{char $\ast$}]{str }\end{DoxyParamCaption})}
+
+Print string in the L\+CD 
+\begin{DoxyParams}{Parameters}
+{\em str} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyCode}
+94 \{
+95     \textcolor{keywordflow}{while} (*str) \hyperlink{i2c-lcd_8c_ac6c9650fc3a35bf393a6bf535e6d0b9f}{lcd\_send\_data} (*str++);
+96 \}
+\end{DoxyCode}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{i2c-lcd_8c_af7b2c26e44dadaaa798a5c3d82914ba7}\label{i2c-lcd_8c_af7b2c26e44dadaaa798a5c3d82914ba7}} 
+\index{i2c-\/lcd.\+c@{i2c-\/lcd.\+c}!hi2c1@{hi2c1}}
+\index{hi2c1@{hi2c1}!i2c-\/lcd.\+c@{i2c-\/lcd.\+c}}
+\subsubsection{\texorpdfstring{hi2c1}{hi2c1}}
+{\footnotesize\ttfamily I2\+C\+\_\+\+Handle\+Type\+Def hi2c1}
+
+Put this in the src folder
+
+$<$ L\+I\+B\+R\+A\+R\+I\+ES 

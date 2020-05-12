@@ -1,0 +1,181 @@
+\hypertarget{group__STM32F1xx__System__Private__Functions}{}\section{S\+T\+M32\+F1xx\+\_\+\+System\+\_\+\+Private\+\_\+\+Functions}
+\label{group__STM32F1xx__System__Private__Functions}\index{S\+T\+M32\+F1xx\+\_\+\+System\+\_\+\+Private\+\_\+\+Functions@{S\+T\+M32\+F1xx\+\_\+\+System\+\_\+\+Private\+\_\+\+Functions}}
+Collaboration diagram for S\+T\+M32\+F1xx\+\_\+\+System\+\_\+\+Private\+\_\+\+Functions\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{group__STM32F1xx__System__Private__Functions_ga93f514700ccf00d08dbdcff7f1224eb2}{System\+Init} (void)
+\begin{DoxyCompactList}\small\item\em Setup the microcontroller system Initialize the Embedded Flash Interface, the P\+LL and update the System\+Core\+Clock variable. \end{DoxyCompactList}\item 
+void \hyperlink{group__STM32F1xx__System__Private__Functions_gae0c36a9591fe6e9c45ecb21a794f0f0f}{System\+Core\+Clock\+Update} (void)
+\begin{DoxyCompactList}\small\item\em Update System\+Core\+Clock variable according to Clock Register Values. The System\+Core\+Clock variable contains the core clock (H\+C\+LK), it can be used by the user application to setup the Sys\+Tick timer or configure other parameters. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{group__STM32F1xx__System__Private__Functions_gae0c36a9591fe6e9c45ecb21a794f0f0f}\label{group__STM32F1xx__System__Private__Functions_gae0c36a9591fe6e9c45ecb21a794f0f0f}} 
+\index{S\+T\+M32\+F1xx\+\_\+\+System\+\_\+\+Private\+\_\+\+Functions@{S\+T\+M32\+F1xx\+\_\+\+System\+\_\+\+Private\+\_\+\+Functions}!System\+Core\+Clock\+Update@{System\+Core\+Clock\+Update}}
+\index{System\+Core\+Clock\+Update@{System\+Core\+Clock\+Update}!S\+T\+M32\+F1xx\+\_\+\+System\+\_\+\+Private\+\_\+\+Functions@{S\+T\+M32\+F1xx\+\_\+\+System\+\_\+\+Private\+\_\+\+Functions}}
+\subsubsection{\texorpdfstring{System\+Core\+Clock\+Update()}{SystemCoreClockUpdate()}}
+{\footnotesize\ttfamily void System\+Core\+Clock\+Update (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Update System\+Core\+Clock variable according to Clock Register Values. The System\+Core\+Clock variable contains the core clock (H\+C\+LK), it can be used by the user application to setup the Sys\+Tick timer or configure other parameters. 
+
+\begin{DoxyNote}{Note}
+Each time the core clock (H\+C\+LK) changes, this function must be called to update System\+Core\+Clock variable value. Otherwise, any configuration based on this variable will be incorrect.
+
+-\/ The system frequency computed by this function is not the real frequency in the chip. It is calculated based on the predefined constant and the selected clock source\+:
+\end{DoxyNote}
+
+\begin{DoxyItemize}
+\item If S\+Y\+S\+C\+LK source is H\+SI, System\+Core\+Clock will contain the \hyperlink{group__STM32F1xx__System__Private__Defines_gaaa8c76e274d0f6dd2cefb5d0b17fbc37}{H\+S\+I\+\_\+\+V\+A\+L\+U\+E($\ast$)}
+\item If S\+Y\+S\+C\+LK source is H\+SE, System\+Core\+Clock will contain the \hyperlink{group__STM32F1xx__System__Private__Defines_gaeafcff4f57440c60e64812dddd13e7cb}{H\+S\+E\+\_\+\+V\+A\+L\+U\+E($\ast$$\ast$)}
+\item If S\+Y\+S\+C\+LK source is P\+LL, System\+Core\+Clock will contain the \hyperlink{group__STM32F1xx__System__Private__Defines_gaeafcff4f57440c60e64812dddd13e7cb}{H\+S\+E\+\_\+\+V\+A\+L\+U\+E($\ast$$\ast$)} or \hyperlink{group__STM32F1xx__System__Private__Defines_gaaa8c76e274d0f6dd2cefb5d0b17fbc37}{H\+S\+I\+\_\+\+V\+A\+L\+U\+E($\ast$)} multiplied by the P\+LL factors.
+\end{DoxyItemize}
+
+($\ast$) H\+S\+I\+\_\+\+V\+A\+L\+UE is a constant defined in stm32f1xx.\+h file (default value 8 M\+Hz) but the real value may vary depending on the variations in voltage and temperature.
+
+($\ast$$\ast$) H\+S\+E\+\_\+\+V\+A\+L\+UE is a constant defined in stm32f1xx.\+h file (default value 8 M\+Hz or 25 M\+Hz, depending on the product used), user has to ensure that H\+S\+E\+\_\+\+V\+A\+L\+UE is same as the real frequency of the crystal used. Otherwise, this function may have wrong result.
+
+
+\begin{DoxyItemize}
+\item The result of this function could be not correct when using fractional value for H\+SE crystal. 
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+
+\end{DoxyItemize}
+\begin{DoxyCode}
+263   \{
+264     \textcolor{keywordflow}{case} 0x00U:  \textcolor{comment}{/* HSI used as system clock */}
+265       \hyperlink{group__STM32F1xx__System__Private__Variables_gaa3cd3e43291e81e795d642b79b6088e6}{SystemCoreClock} = \hyperlink{group__STM32F1xx__System__Private__Defines_gaaa8c76e274d0f6dd2cefb5d0b17fbc37}{HSI\_VALUE};
+266       \textcolor{keywordflow}{break};
+267     \textcolor{keywordflow}{case} 0x04U:  \textcolor{comment}{/* HSE used as system clock */}
+268       \hyperlink{group__STM32F1xx__System__Private__Variables_gaa3cd3e43291e81e795d642b79b6088e6}{SystemCoreClock} = \hyperlink{group__STM32F1xx__System__Private__Defines_gaeafcff4f57440c60e64812dddd13e7cb}{HSE\_VALUE};
+269       \textcolor{keywordflow}{break};
+270     \textcolor{keywordflow}{case} 0x08U:  \textcolor{comment}{/* PLL used as system clock */}
+271 
+272       \textcolor{comment}{/* Get PLL clock source and multiplication factor ----------------------*/}
+273       pllmull = RCC->CFGR & RCC\_CFGR\_PLLMULL;
+274       pllsource = RCC->CFGR & RCC\_CFGR\_PLLSRC;
+275       
+276 \textcolor{preprocessor}{#if !defined(STM32F105xC) && !defined(STM32F107xC)      }
+277       pllmull = ( pllmull >> 18U) + 2U;
+278       
+279       \textcolor{keywordflow}{if} (pllsource == 0x00U)
+280       \{
+281         \textcolor{comment}{/* HSI oscillator clock divided by 2 selected as PLL clock entry */}
+282         \hyperlink{group__STM32F1xx__System__Private__Variables_gaa3cd3e43291e81e795d642b79b6088e6}{SystemCoreClock} = (\hyperlink{group__STM32F1xx__System__Private__Defines_gaaa8c76e274d0f6dd2cefb5d0b17fbc37}{HSI\_VALUE} >> 1U) * pllmull;
+283       \}
+284       \textcolor{keywordflow}{else}
+285       \{
+286 \textcolor{preprocessor}{ #if defined(STM32F100xB) || defined(STM32F100xE)}
+287        prediv1factor = (RCC->CFGR2 & RCC\_CFGR2\_PREDIV1) + 1U;
+288        \textcolor{comment}{/* HSE oscillator clock selected as PREDIV1 clock entry */}
+289        \hyperlink{group__STM32F1xx__System__Private__Variables_gaa3cd3e43291e81e795d642b79b6088e6}{SystemCoreClock} = (\hyperlink{group__STM32F1xx__System__Private__Defines_gaeafcff4f57440c60e64812dddd13e7cb}{HSE\_VALUE} / prediv1factor) * pllmull; 
+290 \textcolor{preprocessor}{ #else}
+291         \textcolor{comment}{/* HSE selected as PLL clock entry */}
+292         \textcolor{keywordflow}{if} ((RCC->CFGR & RCC\_CFGR\_PLLXTPRE) != (uint32\_t)RESET)
+293         \{\textcolor{comment}{/* HSE oscillator clock divided by 2 */}
+294           \hyperlink{group__STM32F1xx__System__Private__Variables_gaa3cd3e43291e81e795d642b79b6088e6}{SystemCoreClock} = (\hyperlink{group__STM32F1xx__System__Private__Defines_gaeafcff4f57440c60e64812dddd13e7cb}{HSE\_VALUE} >> 1U) * pllmull;
+295         \}
+296         \textcolor{keywordflow}{else}
+297         \{
+298           \hyperlink{group__STM32F1xx__System__Private__Variables_gaa3cd3e43291e81e795d642b79b6088e6}{SystemCoreClock} = \hyperlink{group__STM32F1xx__System__Private__Defines_gaeafcff4f57440c60e64812dddd13e7cb}{HSE\_VALUE} * pllmull;
+299         \}
+300 \textcolor{preprocessor}{ #endif}
+301       \}
+302 \textcolor{preprocessor}{#else}
+303       pllmull = pllmull >> 18U;
+304       
+305       \textcolor{keywordflow}{if} (pllmull != 0x0DU)
+306       \{
+307          pllmull += 2U;
+308       \}
+309       \textcolor{keywordflow}{else}
+310       \{ \textcolor{comment}{/* PLL multiplication factor = PLL input clock * 6.5 */}
+311         pllmull = 13U / 2U; 
+312       \}
+313             
+314       \textcolor{keywordflow}{if} (pllsource == 0x00U)
+315       \{
+316         \textcolor{comment}{/* HSI oscillator clock divided by 2 selected as PLL clock entry */}
+317         \hyperlink{group__STM32F1xx__System__Private__Variables_gaa3cd3e43291e81e795d642b79b6088e6}{SystemCoreClock} = (\hyperlink{group__STM32F1xx__System__Private__Defines_gaaa8c76e274d0f6dd2cefb5d0b17fbc37}{HSI\_VALUE} >> 1U) * pllmull;
+318       \}
+319       \textcolor{keywordflow}{else}
+320       \{\textcolor{comment}{/* PREDIV1 selected as PLL clock entry */}
+321         
+322         \textcolor{comment}{/* Get PREDIV1 clock source and division factor */}
+323         prediv1source = RCC->CFGR2 & RCC\_CFGR2\_PREDIV1SRC;
+324         prediv1factor = (RCC->CFGR2 & RCC\_CFGR2\_PREDIV1) + 1U;
+325         
+326         \textcolor{keywordflow}{if} (prediv1source == 0U)
+327         \{ 
+328           \textcolor{comment}{/* HSE oscillator clock selected as PREDIV1 clock entry */}
+329           \hyperlink{group__STM32F1xx__System__Private__Variables_gaa3cd3e43291e81e795d642b79b6088e6}{SystemCoreClock} = (\hyperlink{group__STM32F1xx__System__Private__Defines_gaeafcff4f57440c60e64812dddd13e7cb}{HSE\_VALUE} / prediv1factor) * pllmull;          
+330         \}
+331         \textcolor{keywordflow}{else}
+332         \{\textcolor{comment}{/* PLL2 clock selected as PREDIV1 clock entry */}
+333           
+334           \textcolor{comment}{/* Get PREDIV2 division factor and PLL2 multiplication factor */}
+335           prediv2factor = ((RCC->CFGR2 & RCC\_CFGR2\_PREDIV2) >> 4U) + 1U;
+336           pll2mull = ((RCC->CFGR2 & RCC\_CFGR2\_PLL2MUL) >> 8U) + 2U; 
+337           \hyperlink{group__STM32F1xx__System__Private__Variables_gaa3cd3e43291e81e795d642b79b6088e6}{SystemCoreClock} = (((\hyperlink{group__STM32F1xx__System__Private__Defines_gaeafcff4f57440c60e64812dddd13e7cb}{HSE\_VALUE} / prediv2factor) * pll2mull) / 
+      prediv1factor) * pllmull;                         
+338         \}
+339       \}
+340 \textcolor{preprocessor}{#endif }\textcolor{comment}{/* STM32F105xC */}\textcolor{preprocessor}{ }
+341       \textcolor{keywordflow}{break};
+342 
+343     \textcolor{keywordflow}{default}:
+344       \hyperlink{group__STM32F1xx__System__Private__Variables_gaa3cd3e43291e81e795d642b79b6088e6}{SystemCoreClock} = \hyperlink{group__STM32F1xx__System__Private__Defines_gaaa8c76e274d0f6dd2cefb5d0b17fbc37}{HSI\_VALUE};
+345       \textcolor{keywordflow}{break};
+346   \}
+347   
+348   \textcolor{comment}{/* Compute HCLK clock frequency ----------------*/}
+349   \textcolor{comment}{/* Get HCLK prescaler */}
+350   tmp = \hyperlink{group__STM32F1xx__System__Private__Variables_ga53cb26d01524d9560f98101a2c597c40}{AHBPrescTable}[((RCC->CFGR & RCC\_CFGR\_HPRE) >> 4U)];
+351   \textcolor{comment}{/* HCLK clock frequency */}
+352   \hyperlink{group__STM32F1xx__System__Private__Variables_gaa3cd3e43291e81e795d642b79b6088e6}{SystemCoreClock} >>= tmp;  
+353 \}
+354 
+355 \textcolor{preprocessor}{#if defined(STM32F100xE) || defined(STM32F101xE) || defined(STM32F101xG) || defined(STM32F103xE) ||
+       defined(STM32F103xG)}
+356 \end{DoxyCode}
+\mbox{\Hypertarget{group__STM32F1xx__System__Private__Functions_ga93f514700ccf00d08dbdcff7f1224eb2}\label{group__STM32F1xx__System__Private__Functions_ga93f514700ccf00d08dbdcff7f1224eb2}} 
+\index{S\+T\+M32\+F1xx\+\_\+\+System\+\_\+\+Private\+\_\+\+Functions@{S\+T\+M32\+F1xx\+\_\+\+System\+\_\+\+Private\+\_\+\+Functions}!System\+Init@{System\+Init}}
+\index{System\+Init@{System\+Init}!S\+T\+M32\+F1xx\+\_\+\+System\+\_\+\+Private\+\_\+\+Functions@{S\+T\+M32\+F1xx\+\_\+\+System\+\_\+\+Private\+\_\+\+Functions}}
+\subsubsection{\texorpdfstring{System\+Init()}{SystemInit()}}
+{\footnotesize\ttfamily void System\+Init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Setup the microcontroller system Initialize the Embedded Flash Interface, the P\+LL and update the System\+Core\+Clock variable. 
+
+\begin{DoxyNote}{Note}
+This function should be used only after reset. 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+
+\begin{DoxyCode}
+248 \{
+\end{DoxyCode}

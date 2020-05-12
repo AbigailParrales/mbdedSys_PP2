@@ -1,0 +1,629 @@
+\hypertarget{main_8c}{}\section{Core/\+Src/main.c File Reference}
+\label{main_8c}\index{Core/\+Src/main.\+c@{Core/\+Src/main.\+c}}
+{\ttfamily \#include \char`\"{}main.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}cmsis\+\_\+os.\+h\char`\"{}}\newline
+{\ttfamily \#include \char`\"{}i2c-\/lcd.\+h\char`\"{}}\newline
+Include dependency graph for main.\+c\+:
+% FIG 0
+\subsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \hyperlink{main_8c_a70af21c671abfcc773614a9a4f63d920}{System\+Clock\+\_\+\+Config} (void)
+\begin{DoxyCompactList}\small\item\em System Clock Configuration. \end{DoxyCompactList}\item 
+static void \hyperlink{main_8c_ae89fdd15729ad41a66911190fcbab23a}{M\+X\+\_\+\+G\+P\+I\+O\+\_\+\+Init} (void)
+\begin{DoxyCompactList}\small\item\em G\+P\+IO Initialization Function. \end{DoxyCompactList}\item 
+static void \hyperlink{main_8c_a608dc9e9bcaf978f1611f3ec57670f64}{M\+X\+\_\+\+D\+M\+A\+\_\+\+Init} (void)
+\item 
+static void \hyperlink{main_8c_a62f4b77e20bccafe98a183771749c20c}{M\+X\+\_\+\+U\+S\+A\+R\+T1\+\_\+\+U\+A\+R\+T\+\_\+\+Init} (void)
+\begin{DoxyCompactList}\small\item\em U\+S\+A\+R\+T1 Initialization Function. \end{DoxyCompactList}\item 
+static void \hyperlink{main_8c_aaa163e37853e6fc971474824d9f655ca}{M\+X\+\_\+\+A\+D\+C1\+\_\+\+Init} (void)
+\begin{DoxyCompactList}\small\item\em A\+D\+C1 Initialization Function. \end{DoxyCompactList}\item 
+static void \hyperlink{main_8c_a4230d11f81d0b16e112f1cc3f40cb42f}{M\+X\+\_\+\+I2\+C1\+\_\+\+Init} (void)
+\begin{DoxyCompactList}\small\item\em I2\+C1 Initialization Function. \end{DoxyCompactList}\item 
+void \hyperlink{main_8c_a36108ea342a27ac7fea946d088ce19a3}{Task\+Temp\+\_\+init} (void const $\ast$argument)
+\begin{DoxyCompactList}\small\item\em Function implementing the Task\+Temp thread. \end{DoxyCompactList}\item 
+void \hyperlink{main_8c_af21c875f6f1ada7d2f9a3331850b2d21}{Task\+\_\+\+Toggle\+\_\+init} (void const $\ast$argument)
+\begin{DoxyCompactList}\small\item\em Function implementing the Task\+\_\+\+Toggle thread. \end{DoxyCompactList}\item 
+void \hyperlink{main_8c_a4d95ea713bc7d26581cbb5c1a4090c2c}{Task\+\_\+\+L\+C\+D\+\_\+init} (void const $\ast$argument)
+\item 
+void \hyperlink{main_8c_a4973be7ef343ad13c744375ed306c7a1}{uart\+\_\+\+Temp} (void)
+\begin{DoxyCompactList}\small\item\em Period elapsed callback in non blocking mode. \end{DoxyCompactList}\item 
+int \hyperlink{main_8c_a840291bc02cba5474a4cb46a9b9566fe}{main} (void)
+\item 
+void \hyperlink{main_8c_a8a3b0ad512a6e6c6157440b68d395eac}{H\+A\+L\+\_\+\+T\+I\+M\+\_\+\+Period\+Elapsed\+Callback} (T\+I\+M\+\_\+\+Handle\+Type\+Def $\ast$htim)
+\item 
+void \hyperlink{main_8c_a1730ffe1e560465665eb47d9264826f9}{Error\+\_\+\+Handler} (void)
+\begin{DoxyCompactList}\small\item\em This function is executed in case of error occurrence. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\subsection*{Variables}
+\begin{DoxyCompactItemize}
+\item 
+A\+D\+C\+\_\+\+Handle\+Type\+Def \hyperlink{main_8c_a22b804736f5648d52f639b2647d4ed13}{hadc1}
+\item 
+D\+M\+A\+\_\+\+Handle\+Type\+Def \hyperlink{main_8c_a1c126854bb1813d31ab4776b21dcc51f}{hdma\+\_\+adc1}
+\item 
+I2\+C\+\_\+\+Handle\+Type\+Def \hyperlink{main_8c_af7b2c26e44dadaaa798a5c3d82914ba7}{hi2c1}
+\item 
+U\+A\+R\+T\+\_\+\+Handle\+Type\+Def \hyperlink{main_8c_a2cf715bef37f7e8ef385a30974a5f0d5}{huart1}
+\item 
+os\+Thread\+Id \hyperlink{main_8c_a44c468408084cbb2397c0f0757161606}{Task\+Temp\+Handle}
+\item 
+os\+Thread\+Id \hyperlink{main_8c_aeebdaf134cb2874b32301f26dbef167e}{Task\+\_\+\+Toggle\+Handle}
+\item 
+os\+Mutex\+Id \hyperlink{main_8c_ac859f6ad87e25c484e5f244676d2df84}{uart\+Mutex\+Handle}
+\item 
+os\+Thread\+Id \hyperlink{main_8c_a3ef667a0d219123307ea485885001822}{Task\+\_\+\+L\+C\+D\+Handle}
+\item 
+uint32\+\_\+t \hyperlink{main_8c_a9559e4af2b86b34da2a65003fa2379c8}{value} \mbox{[}1\mbox{]}
+\item 
+uint8\+\_\+t \hyperlink{main_8c_a7f897df1949af68456ee830f2468e476}{data} \mbox{[}$\,$\mbox{]} =\char`\"{}Temp\+: ,L\+E\+D\+M\+A\+X\+: ,L\+E\+D\+M\+I\+N\+: \textbackslash{}r\textbackslash{}n\char`\"{}
+\end{DoxyCompactItemize}
+
+
+\subsection{Function Documentation}
+\mbox{\Hypertarget{main_8c_a1730ffe1e560465665eb47d9264826f9}\label{main_8c_a1730ffe1e560465665eb47d9264826f9}} 
+\index{main.\+c@{main.\+c}!Error\+\_\+\+Handler@{Error\+\_\+\+Handler}}
+\index{Error\+\_\+\+Handler@{Error\+\_\+\+Handler}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{Error\+\_\+\+Handler()}{Error\_Handler()}}
+{\footnotesize\ttfamily void Error\+\_\+\+Handler (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+This function is executed in case of error occurrence. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+
+\begin{DoxyCode}
+381 \{
+382   \textcolor{comment}{/* USER CODE BEGIN Error\_Handler\_Debug */}
+383   \textcolor{comment}{/* User can add his own implementation to report the HAL error return state */}
+384 
+385   \textcolor{comment}{/* USER CODE END Error\_Handler\_Debug */}
+386 \}
+\end{DoxyCode}
+\mbox{\Hypertarget{main_8c_a8a3b0ad512a6e6c6157440b68d395eac}\label{main_8c_a8a3b0ad512a6e6c6157440b68d395eac}} 
+\index{main.\+c@{main.\+c}!H\+A\+L\+\_\+\+T\+I\+M\+\_\+\+Period\+Elapsed\+Callback@{H\+A\+L\+\_\+\+T\+I\+M\+\_\+\+Period\+Elapsed\+Callback}}
+\index{H\+A\+L\+\_\+\+T\+I\+M\+\_\+\+Period\+Elapsed\+Callback@{H\+A\+L\+\_\+\+T\+I\+M\+\_\+\+Period\+Elapsed\+Callback}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{H\+A\+L\+\_\+\+T\+I\+M\+\_\+\+Period\+Elapsed\+Callback()}{HAL\_TIM\_PeriodElapsedCallback()}}
+{\footnotesize\ttfamily void H\+A\+L\+\_\+\+T\+I\+M\+\_\+\+Period\+Elapsed\+Callback (\begin{DoxyParamCaption}\item[{T\+I\+M\+\_\+\+Handle\+Type\+Def $\ast$}]{htim }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}
+370 \{
+371   \textcolor{keywordflow}{if} (htim->Instance == TIM1) \{
+372     HAL\_IncTick();
+373   \}
+374 \}
+\end{DoxyCode}
+\mbox{\Hypertarget{main_8c_a840291bc02cba5474a4cb46a9b9566fe}\label{main_8c_a840291bc02cba5474a4cb46a9b9566fe}} 
+\index{main.\+c@{main.\+c}!main@{main}}
+\index{main@{main}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily int main (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}
+57 \{
+58 
+59   \hyperlink{main_8c_a70af21c671abfcc773614a9a4f63d920}{SystemClock\_Config}();
+60 
+61   \textcolor{comment}{/* Initialize all configured peripherals */}
+62   \hyperlink{main_8c_ae89fdd15729ad41a66911190fcbab23a}{MX\_GPIO\_Init}();
+63   \hyperlink{main_8c_a608dc9e9bcaf978f1611f3ec57670f64}{MX\_DMA\_Init}();
+64   \hyperlink{main_8c_a62f4b77e20bccafe98a183771749c20c}{MX\_USART1\_UART\_Init}();
+65   \hyperlink{main_8c_aaa163e37853e6fc971474824d9f655ca}{MX\_ADC1\_Init}();
+66   \hyperlink{main_8c_a4230d11f81d0b16e112f1cc3f40cb42f}{MX\_I2C1\_Init}();
+67 
+68   \hyperlink{i2c-lcd_8c_a6842775ba83d166f02b8fef8bb63b1e6}{lcd\_init}();
+69 
+70   HAL\_ADC\_Start\_DMA(&\hyperlink{main_8c_a22b804736f5648d52f639b2647d4ed13}{hadc1}, \hyperlink{main_8c_a9559e4af2b86b34da2a65003fa2379c8}{value}, 1);
+71 
+72   \textcolor{comment}{/* Create the mutex(es) */}
+73   \textcolor{comment}{/* definition and creation of uartMutex */}
+74   osMutexDef(uartMutex);
+75   \hyperlink{main_8c_ac859f6ad87e25c484e5f244676d2df84}{uartMutexHandle} = osMutexCreate(osMutex(uartMutex));
+76 
+77   \textcolor{comment}{/* Create the thread(s) */}
+78   \textcolor{comment}{/* definition and creation of TaskTemp */}
+79   osThreadDef(TaskTemp, \hyperlink{main_8c_a36108ea342a27ac7fea946d088ce19a3}{TaskTemp\_init}, osPriorityNormal, 0, 128);
+80   \hyperlink{main_8c_a44c468408084cbb2397c0f0757161606}{TaskTempHandle} = osThreadCreate(osThread(TaskTemp), NULL);
+81 
+82   \textcolor{comment}{/* definition and creation of Task\_Toggle */}
+83   osThreadDef(Task\_Toggle, \hyperlink{main_8c_af21c875f6f1ada7d2f9a3331850b2d21}{Task\_Toggle\_init}, osPriorityNormal, 0, 128);
+84   \hyperlink{main_8c_aeebdaf134cb2874b32301f26dbef167e}{Task\_ToggleHandle} = osThreadCreate(osThread(Task\_Toggle), NULL);
+85 
+86   \textcolor{comment}{/* USER CODE BEGIN RTOS\_THREADS */}
+87   osThreadDef(Task\_LCD, \hyperlink{main_8c_a4d95ea713bc7d26581cbb5c1a4090c2c}{Task\_LCD\_init}, osPriorityNormal, 0, 128);
+88   \hyperlink{main_8c_a3ef667a0d219123307ea485885001822}{Task\_LCDHandle} = osThreadCreate(osThread(Task\_LCD), NULL);
+89   \textcolor{comment}{/* USER CODE END RTOS\_THREADS */}
+90 
+91   \textcolor{comment}{/* Start scheduler */}
+92   osKernelStart();
+93  
+94   \textcolor{keywordflow}{while} (1)\{
+95 
+96   \}
+97 \}
+\end{DoxyCode}
+\mbox{\Hypertarget{main_8c_aaa163e37853e6fc971474824d9f655ca}\label{main_8c_aaa163e37853e6fc971474824d9f655ca}} 
+\index{main.\+c@{main.\+c}!M\+X\+\_\+\+A\+D\+C1\+\_\+\+Init@{M\+X\+\_\+\+A\+D\+C1\+\_\+\+Init}}
+\index{M\+X\+\_\+\+A\+D\+C1\+\_\+\+Init@{M\+X\+\_\+\+A\+D\+C1\+\_\+\+Init}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{M\+X\+\_\+\+A\+D\+C1\+\_\+\+Init()}{MX\_ADC1\_Init()}}
+{\footnotesize\ttfamily static void M\+X\+\_\+\+A\+D\+C1\+\_\+\+Init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+A\+D\+C1 Initialization Function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+Common config
+
+Configure Regular Channel
+
+Common config
+
+Configure Regular Channel
+\begin{DoxyCode}
+148 \{
+149   ADC\_ChannelConfTypeDef sConfig = \{0\};
+150 
+151   \textcolor{comment}{/* USER CODE END ADC1\_Init 1 */}
+154   \hyperlink{main_8c_a22b804736f5648d52f639b2647d4ed13}{hadc1}.Instance = ADC1;
+155   \hyperlink{main_8c_a22b804736f5648d52f639b2647d4ed13}{hadc1}.Init.ScanConvMode = ADC\_SCAN\_DISABLE;
+156   \hyperlink{main_8c_a22b804736f5648d52f639b2647d4ed13}{hadc1}.Init.ContinuousConvMode = DISABLE;
+157   \hyperlink{main_8c_a22b804736f5648d52f639b2647d4ed13}{hadc1}.Init.DiscontinuousConvMode = DISABLE;
+158   \hyperlink{main_8c_a22b804736f5648d52f639b2647d4ed13}{hadc1}.Init.ExternalTrigConv = ADC\_SOFTWARE\_START;
+159   \hyperlink{main_8c_a22b804736f5648d52f639b2647d4ed13}{hadc1}.Init.DataAlign = ADC\_DATAALIGN\_RIGHT;
+160   \hyperlink{main_8c_a22b804736f5648d52f639b2647d4ed13}{hadc1}.Init.NbrOfConversion = 1;
+161   \textcolor{keywordflow}{if} (HAL\_ADC\_Init(&\hyperlink{main_8c_a22b804736f5648d52f639b2647d4ed13}{hadc1}) != HAL\_OK)
+162   \{
+163     \hyperlink{main_8c_a1730ffe1e560465665eb47d9264826f9}{Error\_Handler}();
+164   \}
+167   sConfig.Channel = ADC\_CHANNEL\_0;
+168   sConfig.Rank = ADC\_REGULAR\_RANK\_1;
+169   sConfig.SamplingTime = ADC\_SAMPLETIME\_239CYCLES\_5;
+170   \textcolor{keywordflow}{if} (HAL\_ADC\_ConfigChannel(&\hyperlink{main_8c_a22b804736f5648d52f639b2647d4ed13}{hadc1}, &sConfig) != HAL\_OK)
+171   \{
+172     \hyperlink{main_8c_a1730ffe1e560465665eb47d9264826f9}{Error\_Handler}();
+173   \}
+174 \}
+\end{DoxyCode}
+\mbox{\Hypertarget{main_8c_a608dc9e9bcaf978f1611f3ec57670f64}\label{main_8c_a608dc9e9bcaf978f1611f3ec57670f64}} 
+\index{main.\+c@{main.\+c}!M\+X\+\_\+\+D\+M\+A\+\_\+\+Init@{M\+X\+\_\+\+D\+M\+A\+\_\+\+Init}}
+\index{M\+X\+\_\+\+D\+M\+A\+\_\+\+Init@{M\+X\+\_\+\+D\+M\+A\+\_\+\+Init}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{M\+X\+\_\+\+D\+M\+A\+\_\+\+Init()}{MX\_DMA\_Init()}}
+{\footnotesize\ttfamily static void M\+X\+\_\+\+D\+M\+A\+\_\+\+Init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+Enable D\+MA controller clock 
+\begin{DoxyCode}
+224 \{
+225 
+226   \textcolor{comment}{/* DMA controller clock enable */}
+227   \_\_HAL\_RCC\_DMA1\_CLK\_ENABLE();
+228 
+229   \textcolor{comment}{/* DMA interrupt init */}
+230   \textcolor{comment}{/* DMA1\_Channel1\_IRQn interrupt configuration */}
+231   HAL\_NVIC\_SetPriority(DMA1\_Channel1\_IRQn, 5, 0);
+232   HAL\_NVIC\_EnableIRQ(DMA1\_Channel1\_IRQn);
+233 
+234 \}
+\end{DoxyCode}
+\mbox{\Hypertarget{main_8c_ae89fdd15729ad41a66911190fcbab23a}\label{main_8c_ae89fdd15729ad41a66911190fcbab23a}} 
+\index{main.\+c@{main.\+c}!M\+X\+\_\+\+G\+P\+I\+O\+\_\+\+Init@{M\+X\+\_\+\+G\+P\+I\+O\+\_\+\+Init}}
+\index{M\+X\+\_\+\+G\+P\+I\+O\+\_\+\+Init@{M\+X\+\_\+\+G\+P\+I\+O\+\_\+\+Init}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{M\+X\+\_\+\+G\+P\+I\+O\+\_\+\+Init()}{MX\_GPIO\_Init()}}
+{\footnotesize\ttfamily static void M\+X\+\_\+\+G\+P\+I\+O\+\_\+\+Init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+G\+P\+IO Initialization Function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+
+\begin{DoxyCode}
+242 \{
+243   GPIO\_InitTypeDef GPIO\_InitStruct = \{0\};
+244 
+245   \textcolor{comment}{/* GPIO Ports Clock Enable */}
+246   \_\_HAL\_RCC\_GPIOC\_CLK\_ENABLE();
+247   \_\_HAL\_RCC\_GPIOA\_CLK\_ENABLE();
+248   \_\_HAL\_RCC\_GPIOB\_CLK\_ENABLE();
+249 
+250   \textcolor{comment}{/*Configure GPIO pin Output Level */}
+251   HAL\_GPIO\_WritePin(GPIOC, GPIO\_PIN\_13, GPIO\_PIN\_SET);
+252 
+253   \textcolor{comment}{/*Configure GPIO pin Output Level */}
+254   HAL\_GPIO\_WritePin(GPIOB, GPIO\_PIN\_12|GPIO\_PIN\_13, GPIO\_PIN\_SET);
+255 
+256   \textcolor{comment}{/*Configure GPIO pin : PC13 */}
+257   GPIO\_InitStruct.Pin = GPIO\_PIN\_13;
+258   GPIO\_InitStruct.Mode = GPIO\_MODE\_OUTPUT\_PP;
+259   GPIO\_InitStruct.Pull = GPIO\_NOPULL;
+260   GPIO\_InitStruct.Speed = GPIO\_SPEED\_FREQ\_LOW;
+261   HAL\_GPIO\_Init(GPIOC, &GPIO\_InitStruct);
+262 
+263   \textcolor{comment}{/*Configure GPIO pins : PB12 PB13 */}
+264   GPIO\_InitStruct.Pin = GPIO\_PIN\_12|GPIO\_PIN\_13;
+265   GPIO\_InitStruct.Mode = GPIO\_MODE\_OUTPUT\_PP;
+266   GPIO\_InitStruct.Pull = GPIO\_NOPULL;
+267   GPIO\_InitStruct.Speed = GPIO\_SPEED\_FREQ\_LOW;
+268   HAL\_GPIO\_Init(GPIOB, &GPIO\_InitStruct);
+269 
+270 \}
+\end{DoxyCode}
+\mbox{\Hypertarget{main_8c_a4230d11f81d0b16e112f1cc3f40cb42f}\label{main_8c_a4230d11f81d0b16e112f1cc3f40cb42f}} 
+\index{main.\+c@{main.\+c}!M\+X\+\_\+\+I2\+C1\+\_\+\+Init@{M\+X\+\_\+\+I2\+C1\+\_\+\+Init}}
+\index{M\+X\+\_\+\+I2\+C1\+\_\+\+Init@{M\+X\+\_\+\+I2\+C1\+\_\+\+Init}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{M\+X\+\_\+\+I2\+C1\+\_\+\+Init()}{MX\_I2C1\_Init()}}
+{\footnotesize\ttfamily static void M\+X\+\_\+\+I2\+C1\+\_\+\+Init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+I2\+C1 Initialization Function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+
+\begin{DoxyCode}
+182 \{
+183 
+184   \hyperlink{main_8c_af7b2c26e44dadaaa798a5c3d82914ba7}{hi2c1}.Instance = I2C1;
+185   \hyperlink{main_8c_af7b2c26e44dadaaa798a5c3d82914ba7}{hi2c1}.Init.ClockSpeed = 100000;
+186   \hyperlink{main_8c_af7b2c26e44dadaaa798a5c3d82914ba7}{hi2c1}.Init.DutyCycle = I2C\_DUTYCYCLE\_2;
+187   \hyperlink{main_8c_af7b2c26e44dadaaa798a5c3d82914ba7}{hi2c1}.Init.OwnAddress1 = 0;
+188   \hyperlink{main_8c_af7b2c26e44dadaaa798a5c3d82914ba7}{hi2c1}.Init.AddressingMode = I2C\_ADDRESSINGMODE\_7BIT;
+189   \hyperlink{main_8c_af7b2c26e44dadaaa798a5c3d82914ba7}{hi2c1}.Init.DualAddressMode = I2C\_DUALADDRESS\_DISABLE;
+190   \hyperlink{main_8c_af7b2c26e44dadaaa798a5c3d82914ba7}{hi2c1}.Init.OwnAddress2 = 0;
+191   \hyperlink{main_8c_af7b2c26e44dadaaa798a5c3d82914ba7}{hi2c1}.Init.GeneralCallMode = I2C\_GENERALCALL\_DISABLE;
+192   \hyperlink{main_8c_af7b2c26e44dadaaa798a5c3d82914ba7}{hi2c1}.Init.NoStretchMode = I2C\_NOSTRETCH\_DISABLE;
+193   \textcolor{keywordflow}{if} (HAL\_I2C\_Init(&\hyperlink{main_8c_af7b2c26e44dadaaa798a5c3d82914ba7}{hi2c1}) != HAL\_OK)
+194   \{
+195     \hyperlink{main_8c_a1730ffe1e560465665eb47d9264826f9}{Error\_Handler}();
+196   \}
+197 \}
+\end{DoxyCode}
+\mbox{\Hypertarget{main_8c_a62f4b77e20bccafe98a183771749c20c}\label{main_8c_a62f4b77e20bccafe98a183771749c20c}} 
+\index{main.\+c@{main.\+c}!M\+X\+\_\+\+U\+S\+A\+R\+T1\+\_\+\+U\+A\+R\+T\+\_\+\+Init@{M\+X\+\_\+\+U\+S\+A\+R\+T1\+\_\+\+U\+A\+R\+T\+\_\+\+Init}}
+\index{M\+X\+\_\+\+U\+S\+A\+R\+T1\+\_\+\+U\+A\+R\+T\+\_\+\+Init@{M\+X\+\_\+\+U\+S\+A\+R\+T1\+\_\+\+U\+A\+R\+T\+\_\+\+Init}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{M\+X\+\_\+\+U\+S\+A\+R\+T1\+\_\+\+U\+A\+R\+T\+\_\+\+Init()}{MX\_USART1\_UART\_Init()}}
+{\footnotesize\ttfamily static void M\+X\+\_\+\+U\+S\+A\+R\+T1\+\_\+\+U\+A\+R\+T\+\_\+\+Init (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}}
+
+
+
+U\+S\+A\+R\+T1 Initialization Function. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em None} & \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+
+\begin{DoxyCode}
+205 \{
+206   \hyperlink{main_8c_a2cf715bef37f7e8ef385a30974a5f0d5}{huart1}.Instance = USART1;
+207   \hyperlink{main_8c_a2cf715bef37f7e8ef385a30974a5f0d5}{huart1}.Init.BaudRate = 115200;
+208   \hyperlink{main_8c_a2cf715bef37f7e8ef385a30974a5f0d5}{huart1}.Init.WordLength = UART\_WORDLENGTH\_8B;
+209   \hyperlink{main_8c_a2cf715bef37f7e8ef385a30974a5f0d5}{huart1}.Init.StopBits = UART\_STOPBITS\_1;
+210   \hyperlink{main_8c_a2cf715bef37f7e8ef385a30974a5f0d5}{huart1}.Init.Parity = UART\_PARITY\_NONE;
+211   \hyperlink{main_8c_a2cf715bef37f7e8ef385a30974a5f0d5}{huart1}.Init.Mode = UART\_MODE\_TX\_RX;
+212   \hyperlink{main_8c_a2cf715bef37f7e8ef385a30974a5f0d5}{huart1}.Init.HwFlowCtl = UART\_HWCONTROL\_NONE;
+213   \hyperlink{main_8c_a2cf715bef37f7e8ef385a30974a5f0d5}{huart1}.Init.OverSampling = UART\_OVERSAMPLING\_16;
+214   \textcolor{keywordflow}{if} (HAL\_UART\_Init(&\hyperlink{main_8c_a2cf715bef37f7e8ef385a30974a5f0d5}{huart1}) != HAL\_OK)
+215   \{
+216     \hyperlink{main_8c_a1730ffe1e560465665eb47d9264826f9}{Error\_Handler}();
+217   \}
+218 \}
+\end{DoxyCode}
+\mbox{\Hypertarget{main_8c_a70af21c671abfcc773614a9a4f63d920}\label{main_8c_a70af21c671abfcc773614a9a4f63d920}} 
+\index{main.\+c@{main.\+c}!System\+Clock\+\_\+\+Config@{System\+Clock\+\_\+\+Config}}
+\index{System\+Clock\+\_\+\+Config@{System\+Clock\+\_\+\+Config}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{System\+Clock\+\_\+\+Config()}{SystemClock\_Config()}}
+{\footnotesize\ttfamily void System\+Clock\+\_\+\+Config (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+System Clock Configuration. 
+
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+Initializes the C\+PU, A\+HB and A\+PB busses clocks
+
+Initializes the C\+PU, A\+HB and A\+PB busses clocks
+
+Initializes the C\+PU, A\+HB and A\+PB busses clocks
+
+Initializes the C\+PU, A\+HB and A\+PB busses clocks
+\begin{DoxyCode}
+104 \{
+105   RCC\_OscInitTypeDef RCC\_OscInitStruct = \{0\};
+106   RCC\_ClkInitTypeDef RCC\_ClkInitStruct = \{0\};
+107   RCC\_PeriphCLKInitTypeDef PeriphClkInit = \{0\};
+108 
+111   RCC\_OscInitStruct.OscillatorType = RCC\_OSCILLATORTYPE\_HSI;
+112   RCC\_OscInitStruct.HSIState = RCC\_HSI\_ON;
+113   RCC\_OscInitStruct.HSICalibrationValue = RCC\_HSICALIBRATION\_DEFAULT;
+114   RCC\_OscInitStruct.PLL.PLLState = RCC\_PLL\_ON;
+115   RCC\_OscInitStruct.PLL.PLLSource = RCC\_PLLSOURCE\_HSI\_DIV2;
+116   RCC\_OscInitStruct.PLL.PLLMUL = RCC\_PLL\_MUL7;
+117   \textcolor{keywordflow}{if} (HAL\_RCC\_OscConfig(&RCC\_OscInitStruct) != HAL\_OK)
+118   \{
+119     \hyperlink{main_8c_a1730ffe1e560465665eb47d9264826f9}{Error\_Handler}();
+120   \}
+123   RCC\_ClkInitStruct.ClockType = RCC\_CLOCKTYPE\_HCLK|RCC\_CLOCKTYPE\_SYSCLK
+124                               |RCC\_CLOCKTYPE\_PCLK1|RCC\_CLOCKTYPE\_PCLK2;
+125   RCC\_ClkInitStruct.SYSCLKSource = RCC\_SYSCLKSOURCE\_PLLCLK;
+126   RCC\_ClkInitStruct.AHBCLKDivider = RCC\_SYSCLK\_DIV1;
+127   RCC\_ClkInitStruct.APB1CLKDivider = RCC\_HCLK\_DIV2;
+128   RCC\_ClkInitStruct.APB2CLKDivider = RCC\_HCLK\_DIV1;
+129 
+130   \textcolor{keywordflow}{if} (HAL\_RCC\_ClockConfig(&RCC\_ClkInitStruct, FLASH\_LATENCY\_1) != HAL\_OK)
+131   \{
+132     \hyperlink{main_8c_a1730ffe1e560465665eb47d9264826f9}{Error\_Handler}();
+133   \}
+134   PeriphClkInit.PeriphClockSelection = RCC\_PERIPHCLK\_ADC;
+135   PeriphClkInit.AdcClockSelection = RCC\_ADCPCLK2\_DIV2;
+136   \textcolor{keywordflow}{if} (HAL\_RCCEx\_PeriphCLKConfig(&PeriphClkInit) != HAL\_OK)
+137   \{
+138     \hyperlink{main_8c_a1730ffe1e560465665eb47d9264826f9}{Error\_Handler}();
+139   \}
+140 \}
+\end{DoxyCode}
+\mbox{\Hypertarget{main_8c_a4d95ea713bc7d26581cbb5c1a4090c2c}\label{main_8c_a4d95ea713bc7d26581cbb5c1a4090c2c}} 
+\index{main.\+c@{main.\+c}!Task\+\_\+\+L\+C\+D\+\_\+init@{Task\+\_\+\+L\+C\+D\+\_\+init}}
+\index{Task\+\_\+\+L\+C\+D\+\_\+init@{Task\+\_\+\+L\+C\+D\+\_\+init}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{Task\+\_\+\+L\+C\+D\+\_\+init()}{Task\_LCD\_init()}}
+{\footnotesize\ttfamily void Task\+\_\+\+L\+C\+D\+\_\+init (\begin{DoxyParamCaption}\item[{void const $\ast$}]{argument }\end{DoxyParamCaption})}
+
+
+\begin{DoxyCode}
+311 \{
+312   \textcolor{keywordflow}{for}(;;)
+313   \{
+314     \hyperlink{i2c-lcd_8c_a0934da706080d3b0b3b2f04c9d044e67}{lcd\_send\_cmd}(0x80);
+315       \hyperlink{i2c-lcd_8c_a234ae1cb5d91fa756d1216e3540222ad}{lcd\_send\_string}(\textcolor{stringliteral}{"TEMP:"});
+316       \hyperlink{i2c-lcd_8c_ac6c9650fc3a35bf393a6bf535e6d0b9f}{lcd\_send\_data}((\hyperlink{main_8c_a9559e4af2b86b34da2a65003fa2379c8}{value}[0]/1000)+48);          \textcolor{comment}{/* !< decimal */}
+317       \hyperlink{i2c-lcd_8c_ac6c9650fc3a35bf393a6bf535e6d0b9f}{lcd\_send\_data}(((\hyperlink{main_8c_a9559e4af2b86b34da2a65003fa2379c8}{value}[0]%1000)/100)+48);    \textcolor{comment}{/* !< unit */}
+318       \hyperlink{i2c-lcd_8c_a234ae1cb5d91fa756d1216e3540222ad}{lcd\_send\_string}(\textcolor{stringliteral}{"."});
+319       \hyperlink{i2c-lcd_8c_ac6c9650fc3a35bf393a6bf535e6d0b9f}{lcd\_send\_data}(((\hyperlink{main_8c_a9559e4af2b86b34da2a65003fa2379c8}{value}[0]%100)/10)+48);      \textcolor{comment}{/* !< decimal point */}
+320       \hyperlink{i2c-lcd_8c_a234ae1cb5d91fa756d1216e3540222ad}{lcd\_send\_string}(\textcolor{stringliteral}{" C     "});
+321       \hyperlink{i2c-lcd_8c_a0934da706080d3b0b3b2f04c9d044e67}{lcd\_send\_cmd}(0xc0);                         \textcolor{comment}{/* !< second line */}
+322       \hyperlink{i2c-lcd_8c_a234ae1cb5d91fa756d1216e3540222ad}{lcd\_send\_string}(\textcolor{stringliteral}{"                "});
+323 
+324       HAL\_Delay(200);
+325 
+326       \textcolor{comment}{/* !< LED conditional indicators*/}
+327           \textcolor{keywordflow}{if}(((\hyperlink{main_8c_a9559e4af2b86b34da2a65003fa2379c8}{value}[0]/1000)+48)>50)\{
+328               HAL\_GPIO\_WritePin(GPIOB, GPIO\_PIN\_13, GPIO\_PIN\_RESET);    \textcolor{comment}{/* !< ON */}
+329               HAL\_GPIO\_WritePin(GPIOB, GPIO\_PIN\_12, GPIO\_PIN\_SET);      \textcolor{comment}{/* !< OFF */}
+330               \hyperlink{main_8c_a7f897df1949af68456ee830f2468e476}{data}[18]=\textcolor{charliteral}{'O'}, \hyperlink{main_8c_a7f897df1949af68456ee830f2468e476}{data}[19]=\textcolor{charliteral}{'n'}, \hyperlink{main_8c_a7f897df1949af68456ee830f2468e476}{data}[20]=\textcolor{charliteral}{' '};
+331               \hyperlink{main_8c_a7f897df1949af68456ee830f2468e476}{data}[30]=\textcolor{charliteral}{'O'}, \hyperlink{main_8c_a7f897df1949af68456ee830f2468e476}{data}[31]=\textcolor{charliteral}{'f'}, \hyperlink{main_8c_a7f897df1949af68456ee830f2468e476}{data}[32]=\textcolor{charliteral}{'f'};
+332           \}
+333 
+334           \textcolor{keywordflow}{if}(((\hyperlink{main_8c_a9559e4af2b86b34da2a65003fa2379c8}{value}[0]/1000)+48)<50)\{
+335               HAL\_GPIO\_WritePin(GPIOB, GPIO\_PIN\_13, GPIO\_PIN\_SET);    \textcolor{comment}{/* !< OFF */}
+336               HAL\_GPIO\_WritePin(GPIOB, GPIO\_PIN\_12, GPIO\_PIN\_RESET);    \textcolor{comment}{/* !< ON */}
+337               \hyperlink{main_8c_a7f897df1949af68456ee830f2468e476}{data}[18]=\textcolor{charliteral}{'O'}, \hyperlink{main_8c_a7f897df1949af68456ee830f2468e476}{data}[19]=\textcolor{charliteral}{'f'}, \hyperlink{main_8c_a7f897df1949af68456ee830f2468e476}{data}[20]=\textcolor{charliteral}{'f'};
+338               \hyperlink{main_8c_a7f897df1949af68456ee830f2468e476}{data}[30]=\textcolor{charliteral}{'O'}, \hyperlink{main_8c_a7f897df1949af68456ee830f2468e476}{data}[31]=\textcolor{charliteral}{'n'}, \hyperlink{main_8c_a7f897df1949af68456ee830f2468e476}{data}[32]=\textcolor{charliteral}{' '};
+339           \}
+340           \textcolor{keywordflow}{if}(((\hyperlink{main_8c_a9559e4af2b86b34da2a65003fa2379c8}{value}[0]/1000)+48) == 50)\{
+341               HAL\_GPIO\_WritePin(GPIOB, GPIO\_PIN\_13, GPIO\_PIN\_SET);    \textcolor{comment}{/* !< OFF */}
+342               HAL\_GPIO\_WritePin(GPIOB, GPIO\_PIN\_12, GPIO\_PIN\_SET);    \textcolor{comment}{/* !< ON */}
+343               \hyperlink{main_8c_a7f897df1949af68456ee830f2468e476}{data}[18]=\textcolor{charliteral}{'O'}, \hyperlink{main_8c_a7f897df1949af68456ee830f2468e476}{data}[19]=\textcolor{charliteral}{'f'}, \hyperlink{main_8c_a7f897df1949af68456ee830f2468e476}{data}[20]=\textcolor{charliteral}{'f'};
+344               \hyperlink{main_8c_a7f897df1949af68456ee830f2468e476}{data}[30]=\textcolor{charliteral}{'O'}, \hyperlink{main_8c_a7f897df1949af68456ee830f2468e476}{data}[31]=\textcolor{charliteral}{'f'}, \hyperlink{main_8c_a7f897df1949af68456ee830f2468e476}{data}[32]=\textcolor{charliteral}{'f'};
+345           \}
+346 
+347 
+348         \textcolor{comment}{/* !< Print temp in uart */}
+349         \hyperlink{main_8c_a4973be7ef343ad13c744375ed306c7a1}{uart\_Temp}();
+350 
+351     osDelay(1000); \textcolor{comment}{/* !< Every second */}
+352   \}
+353 \}
+\end{DoxyCode}
+\mbox{\Hypertarget{main_8c_af21c875f6f1ada7d2f9a3331850b2d21}\label{main_8c_af21c875f6f1ada7d2f9a3331850b2d21}} 
+\index{main.\+c@{main.\+c}!Task\+\_\+\+Toggle\+\_\+init@{Task\+\_\+\+Toggle\+\_\+init}}
+\index{Task\+\_\+\+Toggle\+\_\+init@{Task\+\_\+\+Toggle\+\_\+init}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{Task\+\_\+\+Toggle\+\_\+init()}{Task\_Toggle\_init()}}
+{\footnotesize\ttfamily void Task\+\_\+\+Toggle\+\_\+init (\begin{DoxyParamCaption}\item[{void const $\ast$}]{argument }\end{DoxyParamCaption})}
+
+
+
+Function implementing the Task\+\_\+\+Toggle thread. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argument} & Not used \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+
+\begin{DoxyCode}
+300 \{
+301   \textcolor{keywordflow}{for}(;;)
+302   \{
+303      xSemaphoreTake(\hyperlink{main_8c_ac859f6ad87e25c484e5f244676d2df84}{uartMutexHandle}, portMAX\_DELAY);
+304      HAL\_GPIO\_TogglePin(GPIOC, GPIO\_PIN\_13);
+305      xSemaphoreGive(\hyperlink{main_8c_ac859f6ad87e25c484e5f244676d2df84}{uartMutexHandle});
+306     osDelay(500); \textcolor{comment}{/* !< Every second */}
+307   \}
+308 \}
+\end{DoxyCode}
+\mbox{\Hypertarget{main_8c_a36108ea342a27ac7fea946d088ce19a3}\label{main_8c_a36108ea342a27ac7fea946d088ce19a3}} 
+\index{main.\+c@{main.\+c}!Task\+Temp\+\_\+init@{Task\+Temp\+\_\+init}}
+\index{Task\+Temp\+\_\+init@{Task\+Temp\+\_\+init}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{Task\+Temp\+\_\+init()}{TaskTemp\_init()}}
+{\footnotesize\ttfamily void Task\+Temp\+\_\+init (\begin{DoxyParamCaption}\item[{void const $\ast$}]{argument }\end{DoxyParamCaption})}
+
+
+
+Function implementing the Task\+Temp thread. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em argument} & Not used \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+
+\begin{DoxyCode}
+279 \{
+280   \textcolor{keywordflow}{for}(;;)
+281   \{
+282     HAL\_ADC\_Start\_DMA(&\hyperlink{main_8c_a22b804736f5648d52f639b2647d4ed13}{hadc1}, \hyperlink{main_8c_a9559e4af2b86b34da2a65003fa2379c8}{value}, 1);
+283     osDelay(500);
+284 
+285     xSemaphoreTake(\hyperlink{main_8c_ac859f6ad87e25c484e5f244676d2df84}{uartMutexHandle}, portMAX\_DELAY);
+286     HAL\_UART\_Transmit(&\hyperlink{main_8c_a2cf715bef37f7e8ef385a30974a5f0d5}{huart1}, \hyperlink{main_8c_a7f897df1949af68456ee830f2468e476}{data}, 35 ,1000);
+287     xSemaphoreGive(\hyperlink{main_8c_ac859f6ad87e25c484e5f244676d2df84}{uartMutexHandle});
+288     osDelay(500);\textcolor{comment}{//cada seg}
+289   \}
+290 \}
+\end{DoxyCode}
+\mbox{\Hypertarget{main_8c_a4973be7ef343ad13c744375ed306c7a1}\label{main_8c_a4973be7ef343ad13c744375ed306c7a1}} 
+\index{main.\+c@{main.\+c}!uart\+\_\+\+Temp@{uart\+\_\+\+Temp}}
+\index{uart\+\_\+\+Temp@{uart\+\_\+\+Temp}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{uart\+\_\+\+Temp()}{uart\_Temp()}}
+{\footnotesize\ttfamily void uart\+\_\+\+Temp (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Period elapsed callback in non blocking mode. 
+
+\begin{DoxyNote}{Note}
+This function is called when T\+I\+M1 interrupt took place, inside H\+A\+L\+\_\+\+T\+I\+M\+\_\+\+I\+R\+Q\+Handler(). It makes a direct call to H\+A\+L\+\_\+\+Inc\+Tick() to increment a global variable \char`\"{}uw\+Tick\char`\"{} used as application time base. 
+\end{DoxyNote}
+
+\begin{DoxyParams}{Parameters}
+{\em htim} & \+: T\+IM handle \\
+\hline
+\end{DoxyParams}
+
+\begin{DoxyRetVals}{Return values}
+{\em None} & \\
+\hline
+\end{DoxyRetVals}
+
+\begin{DoxyCode}
+363                     \{
+364       \hyperlink{main_8c_a7f897df1949af68456ee830f2468e476}{data}[6]=((\hyperlink{main_8c_a9559e4af2b86b34da2a65003fa2379c8}{value}[0]/1000)+48);
+365       \hyperlink{main_8c_a7f897df1949af68456ee830f2468e476}{data}[7]=(((\hyperlink{main_8c_a9559e4af2b86b34da2a65003fa2379c8}{value}[0]%1000)/100)+48);
+366       \hyperlink{main_8c_a7f897df1949af68456ee830f2468e476}{data}[8]=(\textcolor{charliteral}{'C'});
+367 \}
+\end{DoxyCode}
+
+
+\subsection{Variable Documentation}
+\mbox{\Hypertarget{main_8c_a7f897df1949af68456ee830f2468e476}\label{main_8c_a7f897df1949af68456ee830f2468e476}} 
+\index{main.\+c@{main.\+c}!data@{data}}
+\index{data@{data}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{data}{data}}
+{\footnotesize\ttfamily uint8\+\_\+t data =\char`\"{}Temp\+: ,L\+E\+D\+M\+A\+X\+: ,L\+E\+D\+M\+I\+N\+: \textbackslash{}r\textbackslash{}n\char`\"{}}
+
+\mbox{\Hypertarget{main_8c_a22b804736f5648d52f639b2647d4ed13}\label{main_8c_a22b804736f5648d52f639b2647d4ed13}} 
+\index{main.\+c@{main.\+c}!hadc1@{hadc1}}
+\index{hadc1@{hadc1}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{hadc1}{hadc1}}
+{\footnotesize\ttfamily A\+D\+C\+\_\+\+Handle\+Type\+Def hadc1}
+
+\mbox{\Hypertarget{main_8c_a1c126854bb1813d31ab4776b21dcc51f}\label{main_8c_a1c126854bb1813d31ab4776b21dcc51f}} 
+\index{main.\+c@{main.\+c}!hdma\+\_\+adc1@{hdma\+\_\+adc1}}
+\index{hdma\+\_\+adc1@{hdma\+\_\+adc1}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{hdma\+\_\+adc1}{hdma\_adc1}}
+{\footnotesize\ttfamily D\+M\+A\+\_\+\+Handle\+Type\+Def hdma\+\_\+adc1}
+
+File Name \+: \hyperlink{stm32f1xx__hal__msp_8c}{stm32f1xx\+\_\+hal\+\_\+msp.\+c} Description \+: This file provides code for the M\+SP Initialization and de-\/\+Initialization codes.
+
+\begin{DoxyAttention}{Attention}
+
+\end{DoxyAttention}
+\subsubsection*{\begin{center}\copyright{} Copyright (c) 2020 S\+T\+Microelectronics. All rights reserved.\end{center} }
+
+This software component is licensed by ST under Ultimate Liberty license S\+L\+A0044, the \char`\"{}\+License\char`\"{}; You may not use this file except in compliance with the License. You may obtain a copy of the License at\+: www.\+st.\+com/\+S\+L\+A0044 \mbox{\Hypertarget{main_8c_af7b2c26e44dadaaa798a5c3d82914ba7}\label{main_8c_af7b2c26e44dadaaa798a5c3d82914ba7}} 
+\index{main.\+c@{main.\+c}!hi2c1@{hi2c1}}
+\index{hi2c1@{hi2c1}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{hi2c1}{hi2c1}}
+{\footnotesize\ttfamily I2\+C\+\_\+\+Handle\+Type\+Def hi2c1}
+
+Put this in the src folder
+
+$<$ L\+I\+B\+R\+A\+R\+I\+ES \mbox{\Hypertarget{main_8c_a2cf715bef37f7e8ef385a30974a5f0d5}\label{main_8c_a2cf715bef37f7e8ef385a30974a5f0d5}} 
+\index{main.\+c@{main.\+c}!huart1@{huart1}}
+\index{huart1@{huart1}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{huart1}{huart1}}
+{\footnotesize\ttfamily U\+A\+R\+T\+\_\+\+Handle\+Type\+Def huart1}
+
+\mbox{\Hypertarget{main_8c_a3ef667a0d219123307ea485885001822}\label{main_8c_a3ef667a0d219123307ea485885001822}} 
+\index{main.\+c@{main.\+c}!Task\+\_\+\+L\+C\+D\+Handle@{Task\+\_\+\+L\+C\+D\+Handle}}
+\index{Task\+\_\+\+L\+C\+D\+Handle@{Task\+\_\+\+L\+C\+D\+Handle}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{Task\+\_\+\+L\+C\+D\+Handle}{Task\_LCDHandle}}
+{\footnotesize\ttfamily os\+Thread\+Id Task\+\_\+\+L\+C\+D\+Handle}
+
+\mbox{\Hypertarget{main_8c_aeebdaf134cb2874b32301f26dbef167e}\label{main_8c_aeebdaf134cb2874b32301f26dbef167e}} 
+\index{main.\+c@{main.\+c}!Task\+\_\+\+Toggle\+Handle@{Task\+\_\+\+Toggle\+Handle}}
+\index{Task\+\_\+\+Toggle\+Handle@{Task\+\_\+\+Toggle\+Handle}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{Task\+\_\+\+Toggle\+Handle}{Task\_ToggleHandle}}
+{\footnotesize\ttfamily os\+Thread\+Id Task\+\_\+\+Toggle\+Handle}
+
+\mbox{\Hypertarget{main_8c_a44c468408084cbb2397c0f0757161606}\label{main_8c_a44c468408084cbb2397c0f0757161606}} 
+\index{main.\+c@{main.\+c}!Task\+Temp\+Handle@{Task\+Temp\+Handle}}
+\index{Task\+Temp\+Handle@{Task\+Temp\+Handle}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{Task\+Temp\+Handle}{TaskTempHandle}}
+{\footnotesize\ttfamily os\+Thread\+Id Task\+Temp\+Handle}
+
+\mbox{\Hypertarget{main_8c_ac859f6ad87e25c484e5f244676d2df84}\label{main_8c_ac859f6ad87e25c484e5f244676d2df84}} 
+\index{main.\+c@{main.\+c}!uart\+Mutex\+Handle@{uart\+Mutex\+Handle}}
+\index{uart\+Mutex\+Handle@{uart\+Mutex\+Handle}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{uart\+Mutex\+Handle}{uartMutexHandle}}
+{\footnotesize\ttfamily os\+Mutex\+Id uart\+Mutex\+Handle}
+
+\mbox{\Hypertarget{main_8c_a9559e4af2b86b34da2a65003fa2379c8}\label{main_8c_a9559e4af2b86b34da2a65003fa2379c8}} 
+\index{main.\+c@{main.\+c}!value@{value}}
+\index{value@{value}!main.\+c@{main.\+c}}
+\subsubsection{\texorpdfstring{value}{value}}
+{\footnotesize\ttfamily uint32\+\_\+t value}
+
